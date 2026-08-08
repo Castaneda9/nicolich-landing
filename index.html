@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Денис Николич — дашборды для управления</title>
+  <meta name="description" content="Дашборды как пульт управления: от сигнала к решению. Карта метрик, аудит отчётов, внедрение в Bitrix24 и DataLens." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="topbar__brand" href="#top">Денис Николич</a>
+      <nav class="topbar__nav" aria-label="Разделы">
+        <a href="#problem">Проблема</a>
+        <a href="#audit">Услуги</a>
+        <a href="#approach">Подход</a>
+        <a href="#case">Кейс</a>
+        <a href="#contact">Связаться</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero__grid">
+        <div class="hero__left reveal">
+          <p class="eyebrow">Дашборды · аналитика · управление</p>
+          <h1 class="hero__name">Денис<br />Николич</h1>
+          <p class="hero__tag">Дашборды для управления: от сигнала к решению. Пульт управления, а не витрина данных.</p>
+          <a class="btn-tg" href="https://t.me/nicoIich" target="_blank" rel="noopener noreferrer">
+            <svg class="btn-tg__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8-1.55 7.3c-.12.53-.43.66-.87.41l-2.4-1.77-1.16 1.12c-.13.13-.24.24-.49.24l.17-2.43 4.43-4.01c.19-.17-.04-.27-.3-.1l-5.48 3.45-2.36-.74c-.51-.16-.52-.51.11-.76l9.22-3.55c.43-.16.8.1.66.64z"/></svg>
+            <span>Telegram @nicoIich</span>
+          </a>
+        </div>
+        <nav class="hero__toc reveal reveal--delay-1" aria-label="Содержание">
+          <p class="eyebrow eyebrow--gold">Содержание</p>
+          <ol class="toc">
+            <li><a href="#problem"><span>01</span> Проблема и аудитория</a></li>
+            <li><a href="#principles"><span>02</span> Хороший дашборд</a></li>
+            <li><a href="#map"><span>03</span> Карта и дерево метрик</a></li>
+            <li><a href="#audit"><span>04</span> Аудит как услуга</a></li>
+            <li><a href="#types"><span>05</span> Три типа дашбордов</a></li>
+            <li><a href="#approach"><span>06</span> Как работаем</a></li>
+            <li><a href="#value"><span>07</span> Ценность и результаты</a></li>
+            <li><a href="#case"><span>08</span> Кейс · нагрузка КЦ</a></li>
+            <li><a href="#contact"><span>09</span> Следующий шаг</a></li>
+          </ol>
+        </nav>
+      </div>
+    </section>
+
+    <section class="section section--latte" id="problem">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <span class="section__num">01</span>
+          <h2 class="section__title">Проблема, которую решаем</h2>
+        </header>
+        <p class="section__lead reveal">Для кого: руководители и собственники, которым нужны не «ещё одни графики», а <strong>пульт управления</strong> — операционный директор / руководитель КЦ или отдела продаж; коммерческий директор с едиными цифрами; собственники и гендиректора; те, кто устал от бесконечных отчётов и переделок.</p>
+        <p class="section__lead reveal">Типичная картина:</p>
+        <ul class="bullets reveal">
+          <li>отчётов много, но <strong>решений мало</strong>;</li>
+          <li>одни и те же KPI считаются по-разному в Excel, CRM и «той самой таблице у Маши»;</li>
+          <li>от хаоса к ясности: дашборд красивый, но за 30 секунд непонятно: <strong>что сломалось и куда копать</strong>;</li>
+          <li>чтобы ответить на простой вопрос («кто перегружен?», «где просели?»), нужен аналитик на весь день;</li>
+          <li>вы потратили кучу денег и времени на разработки текущих дашбордов, но легче не стало;</li>
+          <li>руководитель вечно недоволен отчётами, но никто не понимает, чего он хочет.</li>
+        </ul>
+        <p class="callout reveal">Мы проектируем дашборды как <strong>инструмент управления</strong>, а не как витрину данных.</p>
+      </div>
+    </section>
+
+    <section class="section section--espresso" id="principles">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <span class="section__num section__num--terracotta">02</span>
+          <h2 class="section__title">Что такое «хороший» дашборд</h2>
+        </header>
+        <ol class="principles reveal">
+          <li><strong>Дашборд отвечает на конкретный вопрос</strong>, заложенный при проектировании, а не «показывает всё, что есть в базе».</li>
+          <li>Показывает ключевую метрику.</li>
+          <li>Показатели связаны друг с другом.</li>
+          <li>Экран читается сверху вниз: <strong>сигнал → причина → детали</strong>.</li>
+          <li>Руководителю нужен <strong>сигнал отклонения</strong>, а не массив цифр.</li>
+          <li>Ключевых метрик на первом экране немного, у каждой — <strong>понятное</strong> определение.</li>
+          <li>Фильтры согласованы: сменил период или менеджера — <strong>пересчиталось всё</strong>.</li>
+          <li>Отклонение видно сразу (сравнение с прошлым периодом); для «плохих» метрик цвет инвертируется.</li>
+          <li>Из сигнала можно уйти в <strong>детализацию</strong> — не тупик «посмотрите график и догадайтесь».</li>
+          <li>Внедрение без <strong>презентации сценария</strong> неполно: нужно показать, <em>как пользоваться</em>.</li>
+        </ol>
+        <div class="anti reveal">
+          <h3 class="h3">Чего не делаем</h3>
+          <ul class="bullets">
+            <li>график ради одного числа;</li>
+            <li>дашборд, который требует десятиминутного объяснения;</li>
+            <li>длинные дашборды с кучей несвязанных метрик;</li>
+            <li>круговая диаграмма на десяток сегментов «чтобы было красиво».</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--sage" id="map">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <span class="section__num">03</span>
+          <h2 class="section__title">Карта и дерево метрик</h2>
+        </header>
+        <p class="section__lead reveal">Перед дашбордом строим <strong>карту метрик</strong> и <strong>дерево метрик</strong>: сверху — то, ради чего смотрит руководитель (прибыль, нагрузка, маржа). Ниже — из чего оно складывается. Ещё ниже — на что можно влиять руками (рычаги) и что нельзя ломать ради роста (противовесы).</p>
+        <div class="tree reveal" aria-hidden="true">
+          <div class="tree__node tree__node--top">Цель руководителя</div>
+          <div class="tree__rule"></div>
+          <div class="tree__row">
+            <span>Драйвер</span><span>Драйвер</span>
+          </div>
+          <div class="tree__rule"></div>
+          <div class="tree__row">
+            <span>Рычаг</span><span>Противовес</span><span>Рычаг</span>
+          </div>
+        </div>
+        <h3 class="h3 reveal">Ценность клиенту</h3>
+        <ul class="bullets reveal">
+          <li>понятно, <em>куда копать</em>, а не «смотрите 40 графиков»;</li>
+          <li>не оптимизируют одну цифру в ущерб бизнесу;</li>
+          <li>дашборд собирается под дерево, а не «что было в Excel»;</li>
+          <li>меньше переделок: спорят о связях один раз, не о вкусе диаграмм.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section--latte" id="audit">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <span class="section__num">04</span>
+          <h2 class="section__title">Аудит как услуга</h2>
+        </header>
+        <p class="section__lead reveal"><strong>Зачем:</strong> уже потратили на отчёты — легче не стало; нужен диагноз до новой разработки.</p>
+        <div class="split reveal">
+          <div>
+            <h3 class="h3">Что входит</h3>
+            <ol class="bullets bullets--num">
+              <li>Разбор текущего отчёта / дашборда (или набора выгрузок).</li>
+              <li>Фиксация 1–2 управленческих вопросов, на которые сейчас нет ответа с экрана.</li>
+              <li>Проверка определений метрик и связей (есть ли дерево или набор «висящих» KPI).</li>
+              <li>Итог: что оставить / пересчитать / убрать с экрана ЛПР; нужен ли дашборд или хватит починить методику.</li>
+            </ol>
+          </div>
+          <div>
+            <h3 class="h3">Что не входит</h3>
+            <p class="muted">Сборка дашборда и его внедрение — отдельный этап после аудита.</p>
+            <p class="muted"><strong>CTA:</strong> пришлите отчёт + вопрос руководителя → аудит.</p>
+            <a class="btn-tg btn-tg--sm" href="https://t.me/nicoIich" target="_blank" rel="noopener noreferrer">
+              <svg class="btn-tg__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8-1.55 7.3c-.12.53-.43.66-.87.41l-2.4-1.77-1.16 1.12c-.13.13-.24.24-.49.24l.17-2.43 4.43-4.01c.19-.17-.04-.27-.3-.1l-5.48 3.45-2.36-.74c-.51-.16-.52-.51.11-.76l9.22-3.55c.43-.16.8.1.66.64z"/></svg>
+              <span>Заказать аудит</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--forest" id="types">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <span class="section__num section__num--gold">05</span>
+          <h2 class="section__title">Какие дашборды мы делаем</h2>
+        </header>
+        <div class="types reveal">
+          <article class="type">
+            <p class="type__label">Стратегический</p>
+            <p class="type__intro">Достижение цели по направлению или компании в целом, минимум квартал и год. Для топ-менеджеров и акционеров — ситуация в целом, без ухода в детали.</p>
+            <p><span>Вопрос</span> Достигаем ли мы стратегической цели по маржинальности и здоров ли портфель в целом?</p>
+            <p><span>На экране</span> План-факт маржинальности год и квартал, структура портфеля по трём категориям (растёт / стабилен / падает), светофор по продуктам.</p>
+            <p><span>Решение</span> Закрыть убыточное направление, удвоить инвестиции в растущий продукт, пересмотреть цены на массовый продукт с падающей маржой.</p>
+          </article>
+          <article class="type">
+            <p class="type__label">Аналитический</p>
+            <p class="type__intro">Данные из нескольких оперативных, больший период, расчётные показатели: сегментация, доли, отклонения, сравнения — комплексная оценка проекта, продукта, направления.</p>
+            <p><span>Вопрос</span> На каком этапе жизненного цикла мы теряем самых ценных клиентов и какой триггер запускает их уход?</p>
+            <p><span>На экране</span> Когортный анализ удержания, карта оттока по тарифам и сегментам, причины churn с привязкой к последнему действию, объём упущенной выручки.</p>
+            <p><span>Решение</span> Упреждающий триггер перед оттоком, персональный онбординг аварийного тарифа, возврат топ-ушедших спецпредложением.</p>
+          </article>
+          <article class="type">
+            <p class="type__label">Оперативный</p>
+            <p class="type__intro">Состояние дел здесь и сейчас: день, неделя. Таблицы и списки — «выписка с лицевого счёта».</p>
+            <p><span>Вопрос</span> Сливаем ли мы план по выручке в последний час и кого из менеджеров срочно толкать?</p>
+            <p><span>На экране</span> План/факт выручки на сейчас, воронка лидеров и отстающих по сумме чеков, количество чеков в статусе «ждёт оплаты».</p>
+            <p><span>Решение</span> Обзвонить неоплаченные чеки, перебросить тёплые лиды на сильных менеджеров, дать отстающим короткую допскидку.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--latte" id="approach">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <span class="section__num">06</span>
+          <h2 class="section__title">Как мы работаем</h2>
+        </header>
+        <p class="section__lead reveal">Порядок важнее инструмента.</p>
+        <div class="process-table reveal">
+          <div class="process-table__row process-table__head">
+            <span>Шаг</span><span>Что делаем</span><span>Зачем клиенту</span>
+          </div>
+          <div class="process-table__row">
+            <span class="process-table__n">01</span>
+            <span>Фиксируем <strong>один главный управленческий вопрос</strong> и аудиторию</span>
+            <span>Не строим «всё обо всём»</span>
+          </div>
+          <div class="process-table__row">
+            <span class="process-table__n">02</span>
+            <span>Пишем <strong>формулу метрик</strong> (определение, формула, что входит / не входит)</span>
+            <span>Один язык цифр у всех</span>
+          </div>
+          <div class="process-table__row">
+            <span class="process-table__n">03</span>
+            <span>Рисуем макет и иерархию экрана (сигнал → причина → детали)</span>
+            <span>Экран читается без гида</span>
+          </div>
+          <div class="process-table__row">
+            <span class="process-table__n">04</span>
+            <span>Собираем на выбранном стеке (Bitrix-модуль / DataLens / BI-конструктор)</span>
+            <span>Техника под задачу, не наоборот</span>
+          </div>
+          <div class="process-table__row">
+            <span class="process-table__n">05</span>
+            <span>Согласованные фильтры, сравнения периодов, drilldown</span>
+            <span>Можно действовать из экрана</span>
+          </div>
+          <div class="process-table__row">
+            <span class="process-table__n">06</span>
+            <span>Приёмка по чеклисту + <strong>презентация сценария</strong></span>
+            <span>Заказчик понимает, как жить с дашбордом</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--espresso" id="value">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <span class="section__num section__num--terracotta">07</span>
+          <h2 class="section__title">Ценность и результаты</h2>
+        </header>
+        <ul class="bullets reveal">
+          <li>быстрее видеть <strong>отклонение</strong> (не искать его в пяти выгрузках);</li>
+          <li>одинаковые определения KPI у руководства и линейных ролей;</li>
+          <li>переход от спора о цифрах к <strong>действию</strong>;</li>
+          <li>меньше ручной сборки отчётов.</li>
+        </ul>
+        <p class="section__lead reveal">Результаты формулируем как исходы, не как «сделали графики»:</p>
+        <div class="compare reveal">
+          <div class="compare__row compare__head"><span>Было</span><span>Стало</span></div>
+          <div class="compare__row"><span>«Надо выгрузить и свести»</span><span>Ответ на вопрос нагрузки/пропусков — с экрана за минуты</span></div>
+          <div class="compare__row"><span>Разные цифры в головах</span><span>Одна методика метрик (документ + подсказки на KPI)</span></div>
+          <div class="compare__row"><span>График без следующего шага</span><span>Клик → фильтр / список обращений → выводы → решение</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--latte" id="case">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <span class="section__num">08</span>
+          <h2 class="section__title">Кейс: нагрузка контакт-центра</h2>
+        </header>
+        <p class="section__lead reveal">Рабочий эталон из практики: аналитика <strong>открытых линий, звонков и почты</strong> — нагрузка менеджеров внутри Bitrix24.</p>
+        <p class="section__lead reveal"><strong>Зачем:</strong> увидеть нагрузку коммуникаций с клиентом на каждого менеджера.</p>
+        <div class="split reveal">
+          <div>
+            <h3 class="h3">К каким выводам приводит</h3>
+            <ul class="bullets">
+              <li>сколько коммуникаций проходит через команду;</li>
+              <li>где узкое место: пропуски, долгое время ответа, работа вне рабочих часов;</li>
+              <li>кто из менеджеров и какие каналы тянут объём;</li>
+              <li>в какие дни и часы пиковая плотность;</li>
+              <li>время ответа менеджера по <strong>каждому</strong> обращению;</li>
+              <li>перекос исходящих vs входящих;</li>
+              <li>работа вне часов как сигнал к процессу, а не «ещё одна цифра»;</li>
+              <li>задел на будущее — как показатели влияют на <strong>конверсию</strong> в продажу.</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="h3">Решения руководителя</h3>
+            <ul class="bullets">
+              <li>перераспределить смены и планерки с пика обращений на более спокойный промежуток;</li>
+              <li>найм нового сотрудника;</li>
+              <li>снижение маркетинговой активности;</li>
+              <li>разобрать рост «пропущено» по каналу или сотруднику;</li>
+              <li>увидеть перекос исходящих vs входящих;</li>
+              <li>поймать работу вне рабочих часов как сигнал к процессу.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="screen-list reveal">
+          <h3 class="h3">Что на экране</h3>
+          <ol class="bullets bullets--num">
+            <li>Фильтры: период, сотрудники, каналы (+ контекст timezone).</li>
+            <li>KPI-карточки с сравнением с прошлым периодом.</li>
+            <li>Динамика, тепловая карта плотности, разрезы по менеджерам и каналам.</li>
+            <li>Drilldown: список обращений с теми же фильтрами, провал в каждый чат, письмо или звонок.</li>
+            <li>Выгрузка в Excel, настройка рабочего времени, отладочная информация для проверки качества данных.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--cta" id="contact">
+      <div class="wrap reveal">
+        <header class="section__head">
+          <span class="section__num section__num--gold">09</span>
+          <h2 class="section__title">Следующий шаг</h2>
+        </header>
+        <div class="cta-options">
+          <div class="cta-opt">
+            <span class="cta-opt__letter">A</span>
+            <p>Напишите управленческий вопрос, на который сейчас нет ответа с экрана за минуту — разберём, нужен ли дашборд и на каком стеке.</p>
+          </div>
+          <div class="cta-opt">
+            <span class="cta-opt__letter">B</span>
+            <p>Пришлите текущий отчёт (Excel / ссылка на BI) — сделаем короткий разбор: что оставить, что выкинуть, какой первый экран собрать.</p>
+          </div>
+          <div class="cta-opt">
+            <span class="cta-opt__letter">C</span>
+            <p>Ещё не используете аналитику, но хотите внедрить — подскажем, нужно ли это сейчас, и поможем с формулированием вопросов.</p>
+          </div>
+        </div>
+
+        <form class="lead-form" id="lead-form" novalidate>
+          <div class="lead-form__row">
+            <label class="lead-form__field">
+              <span>Имя</span>
+              <input type="text" name="name" autocomplete="name" placeholder="Как к вам обращаться" />
+            </label>
+            <label class="lead-form__field">
+              <span>Контакт</span>
+              <input type="text" name="contact" autocomplete="tel" placeholder="Telegram / телефон / email" required />
+            </label>
+          </div>
+          <fieldset class="lead-form__topics">
+            <legend>Вариант</legend>
+            <label><input type="radio" name="topic" value="A" checked /> A — вопрос</label>
+            <label><input type="radio" name="topic" value="B" /> B — отчёт</label>
+            <label><input type="radio" name="topic" value="C" /> C — консультация</label>
+          </fieldset>
+          <label class="lead-form__field">
+            <span>Сообщение</span>
+            <textarea name="message" rows="4" required placeholder="Вопрос руководителя или ссылка на отчёт"></textarea>
+          </label>
+          <div class="lead-form__actions">
+            <button type="submit" class="btn-tg" id="lead-submit">
+              <svg class="btn-tg__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8-1.55 7.3c-.12.53-.43.66-.87.41l-2.4-1.77-1.16 1.12c-.13.13-.24.24-.49.24l.17-2.43 4.43-4.01c.19-.17-.04-.27-.3-.1l-5.48 3.45-2.36-.74c-.51-.16-.52-.51.11-.76l9.22-3.55c.43-.16.8.1.66.64z"/></svg>
+              <span>Отправить заявку</span>
+            </button>
+            <a class="lead-form__alt" href="https://t.me/nicoIich" target="_blank" rel="noopener noreferrer">или написать @nicoIich</a>
+          </div>
+          <p class="lead-form__status" id="lead-status" role="status" aria-live="polite" hidden></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <span>Денис Николич</span>
+      <a href="https://t.me/nicoIich" target="_blank" rel="noopener noreferrer">@nicoIich</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
