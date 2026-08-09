@@ -96,6 +96,32 @@ a {
   color: var(--gold);
 }
 
+.topbar__lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 8px;
+  padding-left: 16px;
+  border-left: 1px solid var(--line-dark);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.topbar__lang-current {
+  color: var(--gold);
+}
+
+.topbar__lang a {
+  color: var(--muted-light);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.topbar__lang a:hover {
+  color: var(--gold);
+}
+
 /* Hero — forest (STRUKTURA) */
 .hero {
   padding: 52px 0 48px;
@@ -373,6 +399,45 @@ a {
   margin-top: 36px;
   padding-top: 28px;
   border-top: 1px solid var(--line-light);
+}
+
+.case-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin: 28px 0 8px;
+}
+
+.case-shot {
+  margin: 0;
+}
+
+.case-shot__link {
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--line-light);
+  background: #fff;
+  box-shadow: 0 12px 32px rgba(28, 25, 22, 0.12);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.case-shot__link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(28, 25, 22, 0.16);
+}
+
+.case-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.case-shot figcaption {
+  margin-top: 10px;
+  font-size: 0.88rem;
+  color: var(--muted-dark);
+  line-height: 1.45;
 }
 
 /* Principles */

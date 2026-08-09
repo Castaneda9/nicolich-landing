@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Denis Nikolich — dashboards for management</title>
+  <meta name="description" content="Dashboards as a control panel: from signal to decision. Metric maps, report audits, Bitrix24 and DataLens delivery." />
+  <link rel="alternate" hreflang="ru" href="https://card.nicolich.workers.dev/" />
+  <link rel="alternate" hreflang="en" href="https://card.nicolich.workers.dev/en/" />
+  <link rel="alternate" hreflang="x-default" href="https://card.nicolich.workers.dev/" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="../favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="topbar__brand" href="#top">Denis Nikolich</a>
+      <nav class="topbar__nav" aria-label="Sections">
+        <a href="#problem">Problem</a>
+        <a href="#audit">Services</a>
+        <a href="#approach">Approach</a>
+        <a href="#case">Case</a>
+        <a href="#contact">Contact</a>
+        <span class="topbar__lang" aria-label="Language">
+          <a href="/" hreflang="ru" lang="ru">RU</a>
+          <span class="topbar__lang-current" aria-current="true">EN</span>
+        </span>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero__grid">
+        <div class="hero__left reveal">
+          <p class="eyebrow">Dashboards · analytics · management</p>
+          <h1 class="hero__name">Denis<br />Nikolich</h1>
+          <p class="hero__tag">Dashboards for management: from signal to decision. A control panel, not a data showcase.</p>
+          <a class="btn-tg" href="https://t.me/nicoIich" target="_blank" rel="noopener noreferrer">
+            <svg class="btn-tg__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8-1.55 7.3c-.12.53-.43.66-.87.41l-2.4-1.77-1.16 1.12c-.13.13-.24.24-.49.24l.17-2.43 4.43-4.01c.19-.17-.04-.27-.3-.1l-5.48 3.45-2.36-.74c-.51-.16-.52-.51.11-.76l9.22-3.55c.43-.16.8.1.66.64z"/></svg>
+            <span>Telegram @nicoIich</span>
+          </a>
+        </div>
+        <nav class="hero__toc reveal reveal--delay-1" aria-label="Contents">
+          <p class="eyebrow eyebrow--gold">Contents</p>
+          <ol class="toc">
+            <li><a href="#problem"><span>01</span> Problem & audience</a></li>
+            <li><a href="#principles"><span>02</span> A good dashboard</a></li>
+            <li><a href="#map"><span>03</span> Metric map & tree</a></li>
+            <li><a href="#audit"><span>04</span> Audit as a service</a></li>
+            <li><a href="#types"><span>05</span> Three dashboard types</a></li>
+            <li><a href="#approach"><span>06</span> How we work</a></li>
+            <li><a href="#value"><span>07</span> Value & outcomes</a></li>
+            <li><a href="#case"><span>08</span> Case · contact center load</a></li>
+            <li><a href="#contact"><span>09</span> Next step</a></li>
+          </ol>
+        </nav>
+      </div>
+    </section>
+
+    <section class="section section--latte" id="problem">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <span class="section__num">01</span>
+          <h2 class="section__title">The problem we solve</h2>
+        </header>
+        <p class="section__lead reveal">Who it's for: leaders and owners who need not "more charts" but a <strong>control panel</strong> — COO / head of contact center or sales; CCO with one set of numbers; owners and CEOs; teams tired of endless reports and rework.</p>
+        <p class="section__lead reveal">Typical picture:</p>
+        <ul class="bullets reveal">
+          <li>lots of reports, but <strong>few decisions</strong>;</li>
+          <li>the same KPIs calculated differently in Excel, CRM and "that spreadsheet Maria keeps";</li>
+          <li>pretty dashboard, but in 30 seconds it's unclear: <strong>what broke and where to dig</strong>;</li>
+          <li>answering a simple question ("who is overloaded?", "where did we drop?") takes an analyst all day;</li>
+          <li>you spent time and money on dashboards, but work didn't get easier;</li>
+          <li>leadership is never happy with reports, but nobody knows what they actually want.</li>
+        </ul>
+        <p class="callout reveal">We design dashboards as a <strong>management tool</strong>, not a data showcase.</p>
+      </div>
+    </section>
+
+    <section class="section section--espresso" id="principles">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <span class="section__num section__num--terracotta">02</span>
+          <h2 class="section__title">What makes a good dashboard</h2>
+        </header>
+        <ol class="principles reveal">
+          <li><strong>The dashboard answers a specific question</strong> defined at design time — not "everything in the database".</li>
+          <li>It shows the key metric.</li>
+          <li>Metrics are connected to each other.</li>
+          <li>The screen reads top to bottom: <strong>signal → cause → details</strong>.</li>
+          <li>Leaders need a <strong>deviation signal</strong>, not a wall of numbers.</li>
+          <li>Few key metrics on the first screen, each with a <strong>clear</strong> definition.</li>
+          <li>Filters are aligned: change period or manager — <strong>everything recalculates</strong>.</li>
+          <li>Deviation is visible immediately (vs prior period); "bad" metrics use inverted color.</li>
+          <li>From a signal you can drill into <strong>details</strong> — not a dead-end chart.</li>
+          <li>Rollout without a <strong>usage walkthrough</strong> is incomplete: show <em>how to use it</em>.</li>
+        </ol>
+        <div class="anti reveal">
+          <h3 class="h3">What we don't do</h3>
+          <ul class="bullets">
+            <li>a chart for a single number;</li>
+            <li>a dashboard that needs ten minutes of explanation;</li>
+            <li>long dashboards with unrelated metrics;</li>
+            <li>a pie chart with a dozen segments "because it looks nice".</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--sage" id="map">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <span class="section__num">03</span>
+          <h2 class="section__title">Metric map & tree</h2>
+        </header>
+        <p class="section__lead reveal">Before the dashboard we build a <strong>metric map</strong> and <strong>metric tree</strong>: at the top — what the leader cares about (profit, load, margin). Below — what it consists of. Further down — levers you can pull and guardrails you must not break for growth.</p>
+        <div class="tree reveal" aria-hidden="true">
+          <div class="tree__node tree__node--top">Leader's goal</div>
+          <div class="tree__rule"></div>
+          <div class="tree__row">
+            <span>Driver</span><span>Driver</span>
+          </div>
+          <div class="tree__rule"></div>
+          <div class="tree__row">
+            <span>Lever</span><span>Guardrail</span><span>Lever</span>
+          </div>
+        </div>
+        <h3 class="h3 reveal">Value for the client</h3>
+        <ul class="bullets reveal">
+          <li>clear <em>where to dig</em>, not "look at 40 charts";</li>
+          <li>no optimizing one number at the expense of the business;</li>
+          <li>dashboard built around the tree, not "what was in Excel";</li>
+          <li>fewer reworks: argue about relationships once, not chart taste.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section--latte" id="audit">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <span class="section__num">04</span>
+          <h2 class="section__title">Audit as a service</h2>
+        </header>
+        <p class="section__lead reveal"><strong>Why:</strong> you already spent on reports — it didn't get easier; you need a diagnosis before building again.</p>
+        <div class="split reveal">
+          <div>
+            <h3 class="h3">What's included</h3>
+            <ol class="bullets bullets--num">
+              <li>Review of current report / dashboard (or export set).</li>
+              <li>Capture 1–2 management questions that can't be answered from the screen today.</li>
+              <li>Check metric definitions and links (tree vs loose KPIs).</li>
+              <li>Outcome: keep / recalculate / remove from exec view; dashboard needed or methodology fix is enough.</li>
+            </ol>
+          </div>
+          <div>
+            <h3 class="h3">What's not included</h3>
+            <p class="muted">Building and rolling out the dashboard — a separate phase after audit.</p>
+            <p class="muted"><strong>CTA:</strong> send a report + the leader's question → audit.</p>
+            <a class="btn-tg btn-tg--sm" href="https://t.me/nicoIich" target="_blank" rel="noopener noreferrer">
+              <svg class="btn-tg__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8-1.55 7.3c-.12.53-.43.66-.87.41l-2.4-1.77-1.16 1.12c-.13.13-.24.24-.49.24l.17-2.43 4.43-4.01c.19-.17-.04-.27-.3-.1l-5.48 3.45-2.36-.74c-.51-.16-.52-.51.11-.76l9.22-3.55c.43-.16.8.1.66.64z"/></svg>
+              <span>Request an audit</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--forest" id="types">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <span class="section__num section__num--gold">05</span>
+          <h2 class="section__title">Dashboard types we build</h2>
+        </header>
+        <div class="types reveal">
+          <article class="type">
+            <p class="type__label">Strategic</p>
+            <p class="type__intro">Goal achievement for a business unit or company — quarter and year horizon. For top management: the big picture without operational detail.</p>
+            <p><span>Question</span> Are we hitting strategic margin goals and is the portfolio healthy overall?</p>
+            <p><span>On screen</span> Plan vs actual margin (year/quarter), portfolio split (growing / stable / declining), product traffic light.</p>
+            <p><span>Decision</span> Close a loss-making line, double down on a growing product, revisit pricing on a mass SKU with falling margin.</p>
+          </article>
+          <article class="type">
+            <p class="type__label">Analytical</p>
+            <p class="type__intro">Data from several operational sources, longer horizon, derived metrics: segments, shares, deviations — holistic view of product or direction.</p>
+            <p><span>Question</span> At which lifecycle stage do we lose the most valuable customers and what triggers churn?</p>
+            <p><span>On screen</span> Retention cohorts, churn map by plan/segment, churn reasons tied to last action, lost revenue.</p>
+            <p><span>Decision</span> Proactive trigger before churn, tailored onboarding, win-back offer for top leavers.</p>
+          </article>
+          <article class="type">
+            <p class="type__label">Operational</p>
+            <p class="type__intro">Here and now: day, week. Tables and lists — a "bank statement" of activity.</p>
+            <p><span>Question</span> Are we missing revenue plan in the last hour and which managers need a push?</p>
+            <p><span>On screen</span> Revenue plan/fact now, leader/laggard funnel by check size, unpaid orders count.</p>
+            <p><span>Decision</span> Call unpaid orders, route warm leads to strong reps, short discount for laggards.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--latte" id="approach">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <span class="section__num">06</span>
+          <h2 class="section__title">How we work</h2>
+        </header>
+        <p class="section__lead reveal">Order matters more than the tool.</p>
+        <div class="process-table reveal">
+          <div class="process-table__row process-table__head">
+            <span>Step</span><span>What we do</span><span>Why for you</span>
+          </div>
+          <div class="process-table__row">
+            <span class="process-table__n">01</span>
+            <span>Define <strong>one main management question</strong> and audience</span>
+            <span>No "everything about everything"</span>
+          </div>
+          <div class="process-table__row">
+            <span class="process-table__n">02</span>
+            <span>Write <strong>metric formulas</strong> (definition, formula, in/out scope)</span>
+            <span>One language of numbers</span>
+          </div>
+          <div class="process-table__row">
+            <span class="process-table__n">03</span>
+            <span>Wireframe screen hierarchy (signal → cause → details)</span>
+            <span>Readable without a guide</span>
+          </div>
+          <div class="process-table__row">
+            <span class="process-table__n">04</span>
+            <span>Build on chosen stack (Bitrix module / DataLens / BI tool)</span>
+            <span>Tech fits the task</span>
+          </div>
+          <div class="process-table__row">
+            <span class="process-table__n">05</span>
+            <span>Aligned filters, period comparisons, drilldown</span>
+            <span>Act from the screen</span>
+          </div>
+          <div class="process-table__row">
+            <span class="process-table__n">06</span>
+            <span>Acceptance checklist + <strong>usage walkthrough</strong></span>
+            <span>Client knows how to live with it</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--espresso" id="value">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <span class="section__num section__num--terracotta">07</span>
+          <h2 class="section__title">Value & outcomes</h2>
+        </header>
+        <ul class="bullets reveal">
+          <li>spot <strong>deviation</strong> faster (not hunt across five exports);</li>
+          <li>same KPI definitions for leadership and line roles;</li>
+          <li>move from arguing about numbers to <strong>action</strong>;</li>
+          <li>less manual report assembly.</li>
+        </ul>
+        <p class="section__lead reveal">We phrase results as outcomes, not "we made charts":</p>
+        <div class="compare reveal">
+          <div class="compare__row compare__head"><span>Before</span><span>After</span></div>
+          <div class="compare__row"><span>"Need to export and merge"</span><span>Load/missed-call answer on screen in minutes</span></div>
+          <div class="compare__row"><span>Different numbers in people's heads</span><span>One metric methodology (doc + KPI tooltips)</span></div>
+          <div class="compare__row"><span>Chart with no next step</span><span>Click → filter / ticket list → insight → decision</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--latte" id="case">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <span class="section__num">08</span>
+          <h2 class="section__title">Case: contact center workload</h2>
+        </header>
+        <p class="section__lead reveal">Production reference: analytics for <strong>open lines, calls and email</strong> — manager workload inside Bitrix24.</p>
+        <p class="section__lead reveal"><strong>Goal:</strong> see customer communication load per manager.</p>
+        <div class="case-gallery reveal" aria-label="Dashboard screenshots">
+          <figure class="case-shot">
+            <a class="case-shot__link" href="../images/case-cc/dashboard-overview.png" target="_blank" rel="noopener noreferrer">
+              <img src="../images/case-cc/dashboard-overview.png" alt="Contact center workload dashboard in Bitrix24: KPIs, inquiry density heatmap, trends and breakdowns by managers and channels" width="1280" height="720" loading="lazy" />
+            </a>
+            <figcaption>Main screen: KPIs, inquiry density, trends, breakdowns by managers and channels</figcaption>
+          </figure>
+          <figure class="case-shot">
+            <a class="case-shot__link" href="../images/case-cc/drilldown-response-time.png" target="_blank" rel="noopener noreferrer">
+              <img src="../images/case-cc/drilldown-response-time.png" alt="Drilldown: list of conversations with average response time per open line session" width="1280" height="720" loading="lazy" />
+            </a>
+            <figcaption>Drilldown: response time per conversation — click through from KPI or chart</figcaption>
+          </figure>
+        </div>
+        <div class="split reveal">
+          <div>
+            <h3 class="h3">What it reveals</h3>
+            <ul class="bullets">
+              <li>how much communication flows through the team;</li>
+              <li>where the bottleneck is: missed, slow response, after-hours work;</li>
+              <li>which managers and channels carry volume;</li>
+              <li>peak days and hours;</li>
+              <li>response time per <strong>each</strong> conversation;</li>
+              <li>outbound vs inbound skew;</li>
+              <li>after-hours work as a process signal, not "another number";</li>
+              <li>foundation for linking load to <strong>conversion</strong>.</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="h3">Manager decisions</h3>
+            <ul class="bullets">
+              <li>reschedule shifts and standups away from peak hours;</li>
+              <li>hire additional staff;</li>
+              <li>reduce marketing activity;</li>
+              <li>investigate "missed" spikes by channel or agent;</li>
+              <li>spot outbound vs inbound imbalance;</li>
+              <li>catch after-hours work as a process signal.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="screen-list reveal">
+          <h3 class="h3">On screen</h3>
+          <ol class="bullets bullets--num">
+            <li>Filters: period, agents, channels (+ timezone context).</li>
+            <li>KPI cards vs prior period.</li>
+            <li>Trends, density heatmap, splits by manager and channel.</li>
+            <li>Drilldown: conversation list with same filters, open each chat, email or call.</li>
+            <li>Excel export, working hours setup, debug info for data quality checks.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--cta" id="contact">
+      <div class="wrap reveal">
+        <header class="section__head">
+          <span class="section__num section__num--gold">09</span>
+          <h2 class="section__title">Next step</h2>
+        </header>
+        <div class="cta-options">
+          <div class="cta-opt">
+            <span class="cta-opt__letter">A</span>
+            <p>Send a management question you can't answer from a screen in a minute — we'll discuss whether a dashboard is needed and on which stack.</p>
+          </div>
+          <div class="cta-opt">
+            <span class="cta-opt__letter">B</span>
+            <p>Send your current report (Excel / BI link) — we'll do a short review: keep, drop, and what the first screen should be.</p>
+          </div>
+          <div class="cta-opt">
+            <span class="cta-opt__letter">C</span>
+            <p>Not using analytics yet but want to start — we'll help you decide if now is the right time and shape the questions.</p>
+          </div>
+        </div>
+
+        <form class="lead-form" id="lead-form" novalidate enctype="multipart/form-data">
+          <input type="hidden" name="lang" value="en" />
+          <div class="lead-form__row">
+            <label class="lead-form__field">
+              <span>Name</span>
+              <input type="text" name="name" autocomplete="name" placeholder="How should we address you" />
+            </label>
+            <label class="lead-form__field">
+              <span>Contact</span>
+              <input type="text" name="contact" autocomplete="tel" placeholder="Telegram / phone / email" required />
+            </label>
+          </div>
+          <fieldset class="lead-form__topics">
+            <legend>Option</legend>
+            <div class="lead-form__topics-list">
+              <label><input type="radio" name="topic" value="A" checked /> A — question</label>
+              <label><input type="radio" name="topic" value="B" /> B — report</label>
+              <label><input type="radio" name="topic" value="C" /> C — consultation</label>
+            </div>
+          </fieldset>
+          <label class="lead-form__field">
+            <span>Message</span>
+            <textarea name="message" rows="4" placeholder="Your management question or brief report description"></textarea>
+          </label>
+          <div class="lead-form__field lead-form__file">
+            <span>File <em>(optional)</em></span>
+            <label class="lead-form__file-box" for="lead-file">
+              <input type="file" id="lead-file" name="file" accept=".xlsx,.xls,.csv,.pdf,.png,.jpg,.jpeg,.zip,.xlsm" />
+              <span class="lead-form__file-btn">Choose file</span>
+              <span class="lead-form__file-name" id="lead-file-name">Excel, PDF, CSV or archive — up to 10 MB</span>
+            </label>
+          </div>
+          <div class="lead-form__actions">
+            <button type="submit" class="btn-tg" id="lead-submit">
+              <svg class="btn-tg__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8-1.55 7.3c-.12.53-.43.66-.87.41l-2.4-1.77-1.16 1.12c-.13.13-.24.24-.49.24l.17-2.43 4.43-4.01c.19-.17-.04-.27-.3-.1l-5.48 3.45-2.36-.74c-.51-.16-.52-.51.11-.76l9.22-3.55c.43-.16.8.1.66.64z"/></svg>
+              <span>Send request</span>
+            </button>
+            <a class="lead-form__alt" href="https://t.me/nicoIich" target="_blank" rel="noopener noreferrer">or message @nicoIich</a>
+          </div>
+          <p class="lead-form__status" id="lead-status" role="status" aria-live="polite" hidden></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <aside class="dock" id="dock" aria-label="Quick contact">
+    <a class="dock__btn dock__btn--tg" href="https://t.me/nicoIich" target="_blank" rel="noopener noreferrer">
+      <svg class="dock__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8-1.55 7.3c-.12.53-.43.66-.87.41l-2.4-1.77-1.16 1.12c-.13.13-.24.24-.49.24l.17-2.43 4.43-4.01c.19-.17-.04-.27-.3-.1l-5.48 3.45-2.36-.74c-.51-.16-.52-.51.11-.76l9.22-3.55c.43-.16.8.1.66.64z"/></svg>
+      <span>Message on Telegram</span>
+    </a>
+    <a class="dock__btn dock__btn--form" href="#contact" id="dock-form">
+      <svg class="dock__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6 3h8l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm7 1.8V8h3.2L13 4.8zM8 12h8v1.6H8V12zm0 3.4h8V17H8v-1.6zM8 8.6h3.4v1.6H8V8.6z"/></svg>
+      <span>Leave a request</span>
+    </a>
+  </aside>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <span>Denis Nikolich</span>
+      <a class="footer__attr" href="https://www.flaticon.com/free-icons/operator" title="operator icons" target="_blank" rel="noopener noreferrer">Operator icons by Dewi Sari — Flaticon</a>
+      <a href="https://t.me/nicoIich" target="_blank" rel="noopener noreferrer">@nicoIich</a>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+  <!-- Cloudflare Web Analytics -->
+  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "245d22029e9b4713ba6e84ced0489e4c"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+</body>
+</html>

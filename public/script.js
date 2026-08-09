@@ -86,7 +86,31 @@
   var fileNameEl = document.getElementById("lead-file-name");
   var endpoint = form.getAttribute("data-endpoint") || "/api/lead";
   var maxFileBytes = 10 * 1024 * 1024;
-  var defaultFileHint = "Excel, PDF, CSV или архив — до 10 МБ";
+  var lang = document.documentElement.lang === "en" ? "en" : "ru";
+  var msg = {
+    ru: {
+      fileHint: "Excel, PDF, CSV или архив — до 10 МБ",
+      fileTooBig: "Файл слишком большой — максимум 10 МБ.",
+      needContact: "Укажите контакт — Telegram, телефон или email.",
+      needMessage: "Напишите сообщение или прикрепите файл отчёта.",
+      sending: "Отправляем…",
+      sent: "Заявка ушла в Telegram. Отвечу в ближайшее время.",
+      failed: "Не удалось отправить. Напишите напрямую в Telegram @nicoIich.",
+      offline: "Сервер формы недоступен. Напишите напрямую в Telegram @nicoIich.",
+    },
+    en: {
+      fileHint: "Excel, PDF, CSV or archive — up to 10 MB",
+      fileTooBig: "File is too large — maximum 10 MB.",
+      needContact: "Please add a contact — Telegram, phone or email.",
+      needMessage: "Write a message or attach a report file.",
+      sending: "Sending…",
+      sent: "Request sent to Telegram. I will reply shortly.",
+      failed: "Could not send. Message @nicoIich on Telegram directly.",
+      offline: "Form server unavailable. Message @nicoIich on Telegram directly.",
+    },
+  };
+  var t = msg[lang];
+  var defaultFileHint = t.fileHint;
 
   function setStatus(kind, text) {
     statusEl.hidden = false;
@@ -103,7 +127,7 @@
         return;
       }
       if (file.size > maxFileBytes) {
-        setStatus("err", "Файл слишком большой — максимум 10 МБ.");
+        setStatus("err", t.fileTooBig);
         fileInput.value = "";
         fileNameEl.textContent = defaultFileHint;
         fileNameEl.classList.remove("is-chosen");
@@ -124,20 +148,20 @@
     var file = fileInput && fileInput.files && fileInput.files[0];
 
     if (!contact) {
-      setStatus("err", "Укажите контакт — Telegram, телефон или email.");
+      setStatus("err", t.needContact);
       return;
     }
     if (!file && message.length < 5) {
-      setStatus("err", "Напишите сообщение или прикрепите файл отчёта.");
+      setStatus("err", t.needMessage);
       return;
     }
     if (file && file.size > maxFileBytes) {
-      setStatus("err", "Файл слишком большой — максимум 10 МБ.");
+      setStatus("err", t.fileTooBig);
       return;
     }
 
     submitBtn.disabled = true;
-    setStatus("ok", "Отправляем…");
+    setStatus("ok", t.sending);
 
     // multipart: не ставим Content-Type вручную — boundary задаст браузер
     fetch(endpoint, {
@@ -151,7 +175,7 @@
       })
       .then(function (_ref) {
         if (_ref.res.ok && _ref.body && _ref.body.ok) {
-          setStatus("ok", "Заявка ушла в Telegram. Отвечу в ближайшее время.");
+          setStatus("ok", t.sent);
           form.reset();
           var firstTopic = form.querySelector('input[name="topic"][value="A"]');
           if (firstTopic) firstTopic.checked = true;
@@ -161,16 +185,11 @@
           }
           return;
         }
-        var err =
-          (_ref.body && _ref.body.error) ||
-          "Не удалось отправить. Напишите напрямую в Telegram @nicoIich.";
+        var err = (_ref.body && _ref.body.error) || t.failed;
         setStatus("err", err);
       })
       .catch(function () {
-        setStatus(
-          "err",
-          "Сервер формы недоступен. Напишите напрямую в Telegram @nicoIich."
-        );
+        setStatus("err", t.offline);
       })
       .finally(function () {
         submitBtn.disabled = false;

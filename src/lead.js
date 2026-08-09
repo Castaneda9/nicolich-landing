@@ -30,7 +30,17 @@ function json(status, obj) {
   });
 }
 
-function topicLabel(topic) {
+function topicLabel(topic, lang) {
+  if (lang === "en") {
+    return (
+      {
+        A: "Option A — management question",
+        B: "Option B — report review",
+        C: "Option C — consultation",
+        "": "No option",
+      }[topic] || topic
+    );
+  }
   return (
     {
       A: "Вариант A — управленческий вопрос",
@@ -41,16 +51,17 @@ function topicLabel(topic) {
   );
 }
 
-function buildCaption({ name, contact, topic, message, fileName }) {
+function buildCaption({ name, contact, topic, message, fileName, lang }) {
+  const isEn = lang === "en";
   const lines = [
-    "🆕 Заявка с сайта",
+    isEn ? "🆕 Lead from website (EN)" : "🆕 Заявка с сайта",
     "",
-    `Вариант: ${topicLabel(topic)}`,
-    `Имя: ${name || "—"}`,
-    `Контакт: ${contact}`,
+    isEn ? `Option: ${topicLabel(topic, lang)}` : `Вариант: ${topicLabel(topic, lang)}`,
+    isEn ? `Name: ${name || "—"}` : `Имя: ${name || "—"}`,
+    isEn ? `Contact: ${contact}` : `Контакт: ${contact}`,
   ];
-  if (fileName) lines.push(`Файл: ${fileName}`);
-  lines.push("", "Сообщение:", message || "—");
+  if (fileName) lines.push(isEn ? `File: ${fileName}` : `Файл: ${fileName}`);
+  lines.push("", isEn ? "Message:" : "Сообщение:", message || "—");
   return lines.join("\n");
 }
 
@@ -71,6 +82,7 @@ async function parsePayload(request) {
       contact: String(form.get("contact") || "").trim().slice(0, 200),
       topic: String(form.get("topic") || "").trim().slice(0, 40),
       message: String(form.get("message") || "").trim().slice(0, 2000),
+      lang: String(form.get("lang") || "").trim().slice(0, 8),
       file: hasFile ? file : null,
     };
   }
@@ -168,6 +180,7 @@ export async function handleLead(request, env) {
     topic: payload.topic,
     message: payload.message,
     fileName: hasFile ? payload.file.name : "",
+    lang: payload.lang,
   });
 
   let data;

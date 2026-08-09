@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Денис Николич — дашборды для управления</title>
   <meta name="description" content="Дашборды как пульт управления: от сигнала к решению. Карта метрик, аудит отчётов, внедрение в Bitrix24 и DataLens." />
+  <link rel="alternate" hreflang="ru" href="https://card.nicolich.workers.dev/" />
+  <link rel="alternate" hreflang="en" href="https://card.nicolich.workers.dev/en/" />
+  <link rel="alternate" hreflang="x-default" href="https://card.nicolich.workers.dev/" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="512x512" href="favicon.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
@@ -20,6 +23,10 @@
         <a href="#approach">Подход</a>
         <a href="#case">Кейс</a>
         <a href="#contact">Связаться</a>
+        <span class="topbar__lang" aria-label="Язык">
+          <span class="topbar__lang-current" aria-current="true">RU</span>
+          <a href="/en/" hreflang="en" lang="en">EN</a>
+        </span>
       </nav>
     </div>
   </header>
@@ -268,6 +275,20 @@
         </header>
         <p class="section__lead reveal">Рабочий эталон из практики: аналитика <strong>открытых линий, звонков и почты</strong> — нагрузка менеджеров внутри Bitrix24.</p>
         <p class="section__lead reveal"><strong>Зачем:</strong> увидеть нагрузку коммуникаций с клиентом на каждого менеджера.</p>
+        <div class="case-gallery reveal" aria-label="Скриншоты дашборда">
+          <figure class="case-shot">
+            <a class="case-shot__link" href="images/case-cc/dashboard-overview.png" target="_blank" rel="noopener noreferrer">
+              <img src="images/case-cc/dashboard-overview.png" alt="Дашборд нагрузок контакт-центра в Bitrix24: KPI, тепловая карта плотности обращений, динамика и разрезы по менеджерам и каналам" width="1280" height="720" loading="lazy" />
+            </a>
+            <figcaption>Главный экран: KPI, плотность обращений, динамика, разрезы по менеджерам и каналам</figcaption>
+          </figure>
+          <figure class="case-shot">
+            <a class="case-shot__link" href="images/case-cc/drilldown-response-time.png" target="_blank" rel="noopener noreferrer">
+              <img src="images/case-cc/drilldown-response-time.png" alt="Drilldown: список обращений со средним временем ответа по каждой сессии открытой линии" width="1280" height="720" loading="lazy" />
+            </a>
+            <figcaption>Drilldown: время ответа по каждому обращению — клик из KPI или графика</figcaption>
+          </figure>
+        </div>
         <div class="split reveal">
           <div>
             <h3 class="h3">К каким выводам приводит</h3>
@@ -329,6 +350,7 @@
         </div>
 
         <form class="lead-form" id="lead-form" novalidate enctype="multipart/form-data">
+          <input type="hidden" name="lang" value="ru" />
           <div class="lead-form__row">
             <label class="lead-form__field">
               <span>Имя</span>
