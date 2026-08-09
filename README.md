@@ -1,45 +1,56 @@
-# Визитка + форма → Telegram
+# Визитка Денис Николич
 
-Токен бота и `chat_id` хранятся только в `.env` (в git не попадает).
+Прод: https://nicolich-landing.nicolich92.workers.dev
 
-Прод: Worker `https://nicolich-landing.nicolich92.workers.dev`
+## Форма → Telegram на Cloudflare (важно)
 
-## Привязать свой домен (nicolich2.com и т.п.)
+Сайт на Worker. Форма шлёт `POST /api/lead`. Токен бота **не** в HTML — только в Secrets.
 
-Сайт на **Cloudflare Worker** — это не обычный сервер с IP.  
-Поэтому **не нужна A-запись с IPv4**. Нужен **Custom Domain** у Worker: Cloudflare сам создаст DNS.
+### 1. Secrets в Cloudflare (ты уже нашёл Variables / Secrets)
 
-1. Экран «Проверьте DNS / найдено 0 записей / добавьте A и MX» — **пропусти**.  
-   MX не нужен (почты нет). A вручную не заполняй.
-2. Меню слева: **Workers & Pages** → проект **nicolich-landing**.
-3. **Settings** → **Domains & Routes** / **Пользовательские домены**.
-4. **Add** → **Custom Domain** / подключиться к зоне `nicolich2.com`.
-5. Поле «Поддомен»:
-   - для `https://nicolich2.com` — **оставь пустым** → Добавить;
-   - для `www` — впиши только `www` (без точки и без имени домена) → Добавить.
-6. У регистратора домена NS должны быть Cloudflare (как в мастере CF). Без этого свой домен в интернете не заработает, даже если Worker уже открывается на `*.workers.dev`.
+Workers & Pages → **nicolich-landing** → **Settings** → **Variables and Secrets** → **Add**:
 
-Готово, когда `https://nicolich2.com` открывает тот же сайт, что и `*.workers.dev`.
+| Имя | Тип | Значение |
+|-----|-----|----------|
+| `TELEGRAM_BOT_TOKEN` | **Secret** | токен от BotFather |
+| `TELEGRAM_CHAT_ID` | **Secret** | `6028449404` |
 
-## Локальный запуск (форма → Telegram)
+Environment: **Production** (и Preview, если есть).
 
-1. Скопируй `.env.example` → `.env` и вставь токен бота.
-2. Напиши боту `/start` в Telegram.
-3. Узнай `chat_id`:
+### 2. Задеплоить код с `/api/lead`
+
+На своём Mac в папке проекта:
 
 ```bash
-node server.mjs --get-chat-id
+cd ~/Projects/nicolich-landing
+npm install
+npx wrangler login
+npm run deploy
 ```
 
-4. Впиши в `.env`: `TELEGRAM_CHAT_ID=...`
-5. Запуск:
+После деплоя открой сайт и отправь тестовую заявку — должно прийти в Telegram.
 
-```bash
-node server.mjs
-```
+Если деплой идёт с GitHub автоматически — после `git push` дождись билда и всё равно **проверь, что secrets заданы** (иначе форма ответит ошибкой настройки).
 
-Открой http://localhost:8787
+### 3. Проверка
 
-## Важно про токен
+1. Открой https://nicolich-landing.nicolich92.workers.dev  
+2. Заполни форму → Отправить  
+3. В Telegram должна прийти заявка  
 
-Если токен светился в чате — перевыпусти в [@BotFather](https://t.me/BotFather) и обнови `.env`. В HTML/JS токен класть нельзя.
+Если ошибка «Сервер не настроен» — не заданы secrets.  
+Если «Сервер формы недоступен» — задеплоен старый билд без Worker API.
+
+---
+
+## Локально
+
+1. Скопируй `.env.example` → `.env`
+2. Впиши `TELEGRAM_BOT_TOKEN` и `TELEGRAM_CHAT_ID=6028449404`
+3. `npm run dev` → http://localhost:8787
+
+Узнать chat_id снова: `npm run chat-id` (сначала `/start` боту).
+
+## Важно
+
+Токены не коммитить. Если токен светился в чате — перевыпусти в BotFather.

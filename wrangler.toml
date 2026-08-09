@@ -1,0 +1,12 @@
+name = "nicolich-landing"
+main = "src/worker.js"
+compatibility_date = "2024-11-12"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+
+# Секреты задаются в Cloudflare Dashboard → Variables and Secrets
+# или: npx wrangler secret put TELEGRAM_BOT_TOKEN
+#      npx wrangler secret put TELEGRAM_CHAT_ID
+# Не коммитьте токены в git.

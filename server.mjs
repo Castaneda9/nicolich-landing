@@ -34,7 +34,7 @@ loadEnv();
 const TOKEN = process.env.TELEGRAM_BOT_TOKEN || "";
 const CHAT_ID = process.env.TELEGRAM_CHAT_ID || "";
 const PORT = Number(process.env.PORT || 8787);
-const ROOT = __dirname;
+const ROOT = path.join(__dirname, "public");
 
 const MIME = {
   ".html": "text/html; charset=utf-8",

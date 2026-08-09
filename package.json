@@ -1,0 +1,14 @@
+{
+  "name": "nicolich-landing",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server.mjs",
+    "chat-id": "node server.mjs --get-chat-id",
+    "deploy": "wrangler deploy",
+    "cf:dev": "wrangler dev"
+  },
+  "devDependencies": {
+    "wrangler": "^4.20.0"
+  }
+}
