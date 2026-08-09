@@ -36,6 +36,47 @@
     });
   }
 
+  var dock = document.getElementById("dock");
+  var contact = document.getElementById("contact");
+
+  if (dock) {
+    var contactVisible = false;
+
+    function updateDock() {
+      var scrolled = window.pageYOffset > 480;
+      dock.classList.toggle("is-visible", scrolled && !contactVisible);
+    }
+
+    if (contact && "IntersectionObserver" in window) {
+      new IntersectionObserver(
+        function (entries) {
+          contactVisible = entries[0].isIntersecting;
+          updateDock();
+        },
+        { threshold: 0.15 }
+      ).observe(contact);
+    }
+
+    window.addEventListener("scroll", updateDock, { passive: true });
+    updateDock();
+
+    var dockForm = document.getElementById("dock-form");
+    if (dockForm && contact) {
+      dockForm.addEventListener("click", function (e) {
+        e.preventDefault();
+        contact.scrollIntoView({
+          behavior: prefersReduced ? "auto" : "smooth",
+          block: "start",
+        });
+        var firstField = contact.querySelector('input[name="contact"]');
+        if (!firstField) return;
+        window.setTimeout(function () {
+          firstField.focus({ preventScroll: true });
+        }, prefersReduced ? 0 : 700);
+      });
+    }
+  }
+
   var form = document.getElementById("lead-form");
   if (!form) return;
 

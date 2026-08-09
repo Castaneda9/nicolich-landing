@@ -855,6 +855,76 @@ a {
   color: var(--terracotta);
 }
 
+/* Floating dock */
+.dock {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(14px);
+  transition: opacity 0.28s ease, transform 0.28s ease, visibility 0.28s;
+}
+
+.dock.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dock__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 18px;
+  border-radius: 980px;
+  font-size: 0.9rem;
+  font-weight: 510;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+  transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease;
+}
+
+.dock__btn--tg {
+  background: var(--emerald);
+  color: #fff;
+}
+
+.dock__btn--tg:hover {
+  background: var(--emerald-bright);
+  transform: translateX(-2px);
+}
+
+.dock__btn--form {
+  background: var(--latte);
+  color: var(--ink);
+  border: 1px solid var(--gold);
+}
+
+.dock__btn--form:hover {
+  background: #fff;
+  transform: translateX(-2px);
+}
+
+.dock__icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dock,
+  .dock__btn {
+    transition: none;
+  }
+}
+
 /* Footer */
 .footer {
   background: #0a0a0a;
@@ -865,7 +935,9 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 56px;
+  gap: 1rem;
+  min-height: 56px;
+  padding: 0.75rem 0;
   font-size: 0.85rem;
   color: var(--muted-light);
 }
@@ -878,6 +950,17 @@ a {
 
 .footer a:hover {
   color: var(--emerald-bright);
+}
+
+.footer__attr {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--muted-light) !important;
+  text-align: center;
+}
+
+.footer__attr:hover {
+  color: var(--gold) !important;
 }
 
 /* Motion */
