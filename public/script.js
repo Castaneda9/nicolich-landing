@@ -41,7 +41,11 @@
 
   var statusEl = document.getElementById("lead-status");
   var submitBtn = document.getElementById("lead-submit");
+  var fileInput = document.getElementById("lead-file");
+  var fileNameEl = document.getElementById("lead-file-name");
   var endpoint = form.getAttribute("data-endpoint") || "/api/lead";
+  var maxFileBytes = 10 * 1024 * 1024;
+  var defaultFileHint = "Excel, PDF, CSV или архив — до 10 МБ";
 
   function setStatus(kind, text) {
     statusEl.hidden = false;
@@ -49,33 +53,55 @@
     statusEl.textContent = text;
   }
 
+  if (fileInput && fileNameEl) {
+    fileInput.addEventListener("change", function () {
+      var file = fileInput.files && fileInput.files[0];
+      if (!file) {
+        fileNameEl.textContent = defaultFileHint;
+        fileNameEl.classList.remove("is-chosen");
+        return;
+      }
+      if (file.size > maxFileBytes) {
+        setStatus("err", "Файл слишком большой — максимум 10 МБ.");
+        fileInput.value = "";
+        fileNameEl.textContent = defaultFileHint;
+        fileNameEl.classList.remove("is-chosen");
+        return;
+      }
+      fileNameEl.textContent = file.name + " (" + Math.ceil(file.size / 1024) + " КБ)";
+      fileNameEl.classList.add("is-chosen");
+      statusEl.hidden = true;
+    });
+  }
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
     var data = new FormData(form);
-    var payload = {
-      name: String(data.get("name") || "").trim(),
-      contact: String(data.get("contact") || "").trim(),
-      topic: String(data.get("topic") || "").trim(),
-      message: String(data.get("message") || "").trim(),
-    };
+    var contact = String(data.get("contact") || "").trim();
+    var message = String(data.get("message") || "").trim();
+    var file = fileInput && fileInput.files && fileInput.files[0];
 
-    if (!payload.contact) {
+    if (!contact) {
       setStatus("err", "Укажите контакт — Telegram, телефон или email.");
       return;
     }
-    if (payload.message.length < 5) {
-      setStatus("err", "Напишите вопрос или описание чуть подробнее.");
+    if (!file && message.length < 5) {
+      setStatus("err", "Напишите сообщение или прикрепите файл отчёта.");
+      return;
+    }
+    if (file && file.size > maxFileBytes) {
+      setStatus("err", "Файл слишком большой — максимум 10 МБ.");
       return;
     }
 
     submitBtn.disabled = true;
     setStatus("ok", "Отправляем…");
 
+    // multipart: не ставим Content-Type вручную — boundary задаст браузер
     fetch(endpoint, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
+      body: data,
     })
       .then(function (res) {
         return res.json().then(function (body) {
@@ -88,6 +114,10 @@
           form.reset();
           var firstTopic = form.querySelector('input[name="topic"][value="A"]');
           if (firstTopic) firstTopic.checked = true;
+          if (fileNameEl) {
+            fileNameEl.textContent = defaultFileHint;
+            fileNameEl.classList.remove("is-chosen");
+          }
           return;
         }
         var err =
@@ -98,7 +128,7 @@
       .catch(function () {
         setStatus(
           "err",
-          "Сервер формы недоступен. Запустите сайт через node server.mjs или напишите @nicoIich."
+          "Сервер формы недоступен. Напишите напрямую в Telegram @nicoIich."
         );
       })
       .finally(function () {

@@ -1,17 +1,15 @@
 /**
- * Локальный / простой хостинг-эндпоинт для формы → Telegram.
+ * Локальный сервер: статика из public/ + POST /api/lead → Telegram.
  *
- * Запуск:
  *   node server.mjs
- *   node server.mjs --get-chat-id   # после /start боту — узнать chat_id
- *
- * Секреты только из .env (не из браузера).
+ *   node server.mjs --get-chat-id
  */
 
 import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { handleLead } from "./src/lead.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -46,21 +44,17 @@ const MIME = {
   ".ico": "image/x-icon",
 };
 
-async function tg(method, body) {
-  const res = await fetch(`https://api.telegram.org/bot${TOKEN}/${method}`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
-  });
-  return res.json();
-}
-
 async function getChatId() {
   if (!TOKEN) {
     console.error("Нет TELEGRAM_BOT_TOKEN в .env");
     process.exit(1);
   }
-  const data = await tg("getUpdates", { limit: 20 });
+  const res = await fetch(`https://api.telegram.org/bot${TOKEN}/getUpdates`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ limit: 20 }),
+  });
+  const data = await res.json();
   if (!data.ok) {
     console.error("Telegram error:", data);
     process.exit(1);
@@ -71,11 +65,11 @@ async function getChatId() {
     if (chat) chats.set(String(chat.id), chat);
   }
   if (!chats.size) {
-    console.log("Обновлений нет. Напиши боту /start в Telegram и запусти снова:");
+    console.log("Обновлений нет. Напиши боту /start и запусти снова:");
     console.log("  node server.mjs --get-chat-id");
     process.exit(0);
   }
-  console.log("Найденные chat_id — скопируй свой в .env как TELEGRAM_CHAT_ID:\n");
+  console.log("Найденные chat_id — впиши в .env как TELEGRAM_CHAT_ID:\n");
   for (const [id, chat] of chats) {
     const name = [chat.first_name, chat.last_name, chat.username ? `@${chat.username}` : ""]
       .filter(Boolean)
@@ -84,91 +78,22 @@ async function getChatId() {
   }
 }
 
-function sendJson(res, status, obj) {
-  const body = JSON.stringify(obj);
-  res.writeHead(status, {
-    "Content-Type": "application/json; charset=utf-8",
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "POST, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type",
-  });
-  res.end(body);
-}
-
-function readBody(req) {
+function readBodyBuffer(req) {
   return new Promise((resolve, reject) => {
     const chunks = [];
     let size = 0;
     req.on("data", (c) => {
       size += c.length;
-      if (size > 64_000) {
+      if (size > 12 * 1024 * 1024) {
         reject(new Error("Слишком большой запрос"));
         req.destroy();
         return;
       }
       chunks.push(c);
     });
-    req.on("end", () => resolve(Buffer.concat(chunks).toString("utf8")));
+    req.on("end", () => resolve(Buffer.concat(chunks)));
     req.on("error", reject);
   });
-}
-
-async function handleLead(req, res) {
-  if (!TOKEN || !CHAT_ID) {
-    sendJson(res, 500, {
-      ok: false,
-      error: "Сервер не настроен: нужен TELEGRAM_BOT_TOKEN и TELEGRAM_CHAT_ID в .env",
-    });
-    return;
-  }
-
-  let payload;
-  try {
-    payload = JSON.parse(await readBody(req));
-  } catch {
-    sendJson(res, 400, { ok: false, error: "Некорректный JSON" });
-    return;
-  }
-
-  const name = String(payload.name || "").trim().slice(0, 120);
-  const contact = String(payload.contact || "").trim().slice(0, 200);
-  const topic = String(payload.topic || "").trim().slice(0, 40);
-  const message = String(payload.message || "").trim().slice(0, 2000);
-
-  if (!message || message.length < 5) {
-    sendJson(res, 400, { ok: false, error: "Напишите вопрос или описание (хотя бы несколько слов)" });
-    return;
-  }
-
-  const topicLabel =
-    { A: "Вариант A — управленческий вопрос", B: "Вариант B — разбор отчёта", C: "Вариант C — консультация", "": "Без варианта" }[
-      topic
-    ] || topic;
-
-  const text = [
-    "🆕 Заявка с сайта",
-    "",
-    `Вариант: ${topicLabel}`,
-    `Имя: ${name || "—"}`,
-    `Контакт: ${contact || "—"}`,
-    "",
-    "Сообщение:",
-    message,
-  ].join("\n");
-
-  const data = await tg("sendMessage", {
-    chat_id: CHAT_ID,
-    text,
-    disable_web_page_preview: true,
-  });
-
-  if (!data.ok) {
-    console.error("Telegram sendMessage failed:", data);
-    sendJson(res, 502, { ok: false, error: "Не удалось отправить в Telegram" });
-    return;
-  }
-
-  sendJson(res, 200, { ok: true });
 }
 
 function serveStatic(req, res) {
@@ -194,17 +119,33 @@ if (process.argv.includes("--get-chat-id")) {
 }
 
 const server = http.createServer(async (req, res) => {
-  if (req.method === "OPTIONS" && req.url === "/api/lead") {
-    sendJson(res, 204, {});
-    return;
-  }
+  const urlPath = (req.url || "/").split("?")[0];
 
-  if (req.method === "POST" && req.url === "/api/lead") {
+  if (urlPath === "/api/lead" && (req.method === "POST" || req.method === "OPTIONS")) {
     try {
-      await handleLead(req, res);
+      const buf = req.method === "POST" ? await readBodyBuffer(req) : undefined;
+      const headers = {};
+      if (req.headers["content-type"]) headers["content-type"] = req.headers["content-type"];
+      const request = new Request("http://localhost/api/lead", {
+        method: req.method,
+        headers,
+        body: buf,
+      });
+      const out = await handleLead(request, {
+        TELEGRAM_BOT_TOKEN: TOKEN,
+        TELEGRAM_CHAT_ID: CHAT_ID,
+      });
+      const text = await out.text();
+      const outHeaders = { "Content-Type": out.headers.get("Content-Type") || "application/json" };
+      for (const key of ["Access-Control-Allow-Origin", "Access-Control-Allow-Methods", "Access-Control-Allow-Headers"]) {
+        if (out.headers.get(key)) outHeaders[key] = out.headers.get(key);
+      }
+      res.writeHead(out.status, outHeaders);
+      res.end(text);
     } catch (err) {
       console.error(err);
-      sendJson(res, 500, { ok: false, error: "Ошибка сервера" });
+      res.writeHead(500, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ ok: false, error: "Ошибка сервера" }));
     }
     return;
   }
